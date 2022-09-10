@@ -3,4 +3,8 @@ const app = express();
 
 const PORT = 3333;
 
-app.listen(PORT, () => console.log(`O servidor está rodando na porta ${PORT}`))
+app.get('/', (request, response) => {
+  response.send("Hello World! teste1 teste2")
+});
+
+app.listen(PORT, () => console.log(`O servidor está rodando na porta ${PORT}`));
