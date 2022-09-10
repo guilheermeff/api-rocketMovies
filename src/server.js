@@ -1,5 +1,8 @@
+const database = require("./database/sqlite");
 const express = require("express");
 const app = express();
+
+database();
 
 const PORT = 3333;
 
