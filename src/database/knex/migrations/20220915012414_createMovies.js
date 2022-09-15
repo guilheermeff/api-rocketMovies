@@ -1,4 +1,4 @@
-exports.up = knex => knex.schemas.createTable("movies", table => {
+exports.up = knex => knex.schema.createTable("movies", table => {
   table.increments("id");
 	table.text("title");
 	table.text("description");
