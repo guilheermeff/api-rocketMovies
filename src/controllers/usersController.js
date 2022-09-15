@@ -48,7 +48,7 @@ class UsersController {
         throw new AppError("As senhas não conferem!")
       }
 
-      user.password = await hash(password, 8)
+      user.password = await hash(password, 8);
     }
 
     await database.run(`
@@ -57,7 +57,7 @@ class UsersController {
       email = ?,
       password = ?,
       update_at = DATETIME('now'),
-      WHERE id = ?`
+      WHERE id = ?`,
       [user.name, user.email, user.password, id]
     );
 
