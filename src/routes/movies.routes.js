@@ -5,4 +5,7 @@ const moviesRouter = Router();
 
 const movieController = new MoviesController();
 
-moviesRouter.get("/:user_id", movieController.create);
+moviesRouter.post("/:user_id", movieController.create);
+
+
+module.exports = moviesRouter;

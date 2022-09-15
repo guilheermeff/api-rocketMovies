@@ -1,14 +1,15 @@
-const AppError = require("../utils/Apperror.js");
-const sqliteConnection = require("../database/sqlite");
+const knex = require("../database/knex")
 
 class MoviesController {
   async create(request, response) {
     const { title, description, rating } = request.body;
     const { user_id } = request.params;
     
-    const database = await sqliteConnection();
-
-    // CONTINUAR AQUI 15/09!!!
+    const movie_id = await knex("movies").insert({
+      title,
+      description,
+      rating
+    })
   }
 }
 
