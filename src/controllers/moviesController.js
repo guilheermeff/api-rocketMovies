@@ -16,6 +16,8 @@ class MoviesController {
       rating,
       user_id
     })
+
+    // const insertTags (CONTINUAR AQUI 14/O9!!)
   }
 
   async show(request, response) {
