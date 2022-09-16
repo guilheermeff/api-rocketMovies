@@ -3,7 +3,7 @@ const AppError = require("../utils/Apperror.js");
 
 class MoviesController {
   async create(request, response) {
-    const { title, description, rating } = request.body;
+    const { title, description, rating, tags } = request.body;
     const { user_id } = request.params;
 
     if(rating < 1 || rating > 5) {
@@ -17,6 +17,17 @@ class MoviesController {
       user_id
     })
   }
+
+  async show(request, response) {
+    const { id } = request.params;
+
+    const movie = await knex("movies").where({ id }).first();
+
+    return response.json({
+      movie
+    });
+  }
+
   async delete(request, response) {
     const { id } = request.params;
 

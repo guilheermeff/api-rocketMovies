@@ -7,6 +7,7 @@ const movieController = new MoviesController();
 
 moviesRouter.post("/:user_id", movieController.create);
 moviesRouter.delete("/:id", movieController.delete);
+moviesRouter.get("/:id", movieController.show);
 
 
 module.exports = moviesRouter;
