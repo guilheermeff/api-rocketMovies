@@ -15,9 +15,19 @@ class MoviesController {
       description,
       rating,
       user_id
-    })
+    });
 
-    // const insertTags (CONTINUAR AQUI 14/O9!!)
+    const insertTags = tags.map( name => {
+      return {
+        movie_id,
+        user_id,
+        name
+      }
+    });
+
+    await knex("tags").insert(insertTags);
+
+    response.json();
   }
 
   async show(request, response) {
