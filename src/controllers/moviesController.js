@@ -59,9 +59,8 @@ class MoviesController {
       movies = await knex("tags")
       .select([
         movies.id,
-        movies.title,
-        movies.description,
-        movies.user_id
+        movies.user_id,
+        movies.name
       ])
       .where(movies.user_id, user_id)
       .whereLike(movies.title, `%${title}%`)
@@ -76,6 +75,8 @@ class MoviesController {
       .whereLike("title", `%${title}%`)
       .orderBy("title");
     }
+
+    return response.json(movies);
   }
 }
 
