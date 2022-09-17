@@ -17,7 +17,7 @@ class MoviesController {
       user_id
     });
 
-    const insertTags = tags.map( name => {
+    const insertTags = tags.map(name => {
       return {
         movie_id,
         user_id,
