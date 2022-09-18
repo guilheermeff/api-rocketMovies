@@ -29,8 +29,8 @@ class UsersController {
     }
 
     const userWithUpdateEmail = await database.get("SELECT email FROM users WHERE email = (?)", [email]);
-    
-    if(userWithUpdateEmail && userWithUpdateEmail.id !== user.id) {
+
+    if(userWithUpdateEmail && userWithUpdateEmail.id !== id) {
       throw new AppError("O e-mail informado já está sendo utilizado.");
     }
 
@@ -45,7 +45,7 @@ class UsersController {
       const checkPassword = await compare(old_password, user.password);
 
       if(!checkPassword) {
-        throw new AppError("As senhas não conferem!")
+        throw new AppError("A sua senha atual não confere!");
       }
 
       user.password = await hash(password, 8);
@@ -56,7 +56,7 @@ class UsersController {
       name = ?,
       email = ?,
       password = ?,
-      update_at = DATETIME('now'),
+      updated_at = DATETIME('now')
       WHERE id = ?`,
       [user.name, user.email, user.password, id]
     );
