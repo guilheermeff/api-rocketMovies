@@ -53,10 +53,16 @@ class MoviesController {
 
     let movies;
 
-    movies = await knex("movies")
-    .where({ user_id })
-    .orderBy("title")
-    .whereLike("title", `%${title}%`)
+    if(tags) {
+      const filterTags = tags.split(',').map(tag => tag.trim());
+
+      // CONTINUAR DAQUI 18/09!!
+    } else {
+      movies = await knex("movies")
+      .where({ user_id })
+      .orderBy("title")
+      .whereLike("title", `%${title}%`)
+    }
 
     return response.json(movies);
   }
