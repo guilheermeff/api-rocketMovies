@@ -60,7 +60,7 @@ class MoviesController {
         .select([
           "movies.id",
           "movies.title",
-         "movies.user_id"
+          "movies.user_id"
         ])
         .where("movies.user_id", user_id)
         .whereLike("movies.title", `%${title}%`)
@@ -74,10 +74,9 @@ class MoviesController {
         .whereLike("title", `%${title}%`)
     }
 
-    const userTags = await knex("tags").where({ user_id });
-    console.log(movies)
+    const userTags = await knex("tags").where({ user_id })
     const moviesWithTags = movies.map( movie => {
-      const movieTags = userTags.filter( tag => tag.note_id === movie.id)
+      const movieTags = userTags.filter(tag => tag.movie_id === movie.id)
 
       return {
         ...movies,
