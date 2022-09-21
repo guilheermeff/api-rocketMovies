@@ -54,8 +54,9 @@ class MoviesController {
     let movies;
 
     if(tags) {
-      const filterTags = tags.split(',').map(tag => tag.trim());
 
+      const filterTags = tags.split(',').map(tag => tag.trim());
+      console.log(filterTags)
       movies = await knex("tags")
         .select([
           "movies.id",
@@ -72,19 +73,20 @@ class MoviesController {
         .where({ user_id })
         .orderBy("title")
         .whereLike("title", `%${title}%`)
-    }
-
-    const userTags = await knex("tags").where({ user_id })
-    const moviesWithTags = movies.map( movie => {
-      const movieTags = userTags.filter(tag => tag.movie_id === movie.id)
-
-      return {
-        ...movies,
-        tags: movieTags
       }
-    })
 
-    return response.json(moviesWithTags);
+      const userTags = await knex("tags").where({ user_id })
+      const moviesWithTags = movies.map( movie => {
+  
+        const movieTags = userTags.filter(tag => tag.movie_id === movie.id)
+
+        return {
+          ...movies,
+          tags: movieTags
+        }
+      })
+
+      return response.json(moviesWithTags);
   }
 }
 
